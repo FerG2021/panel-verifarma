@@ -5,121 +5,113 @@
     </div>
 
     <!-- items del menu -->
-    <div class="menu-toggle-wrap" v-if="tipoUsuario == 1">
-      <button class="menu-toggle">
-        <span class="material-icons" @click="toggleMenu()">
-          keyboard_double_arrow_right
-        </span>
-      </button>
-    </div>
+    <button class="menu-toggle">
+      <span class="material-icons" @click="toggleMenu()">
+        keyboard_double_arrow_right
+      </span>
+    </button>
 
     <h3>MENU</h3>
     <div class="menu">
       <!-- Home -->
-      <div v-if="tipoUsuario == 1">
-        <router-link class="button" to="/" v-if="is_expanded">
-          <!-- <span class="material-icons">home</span> -->
+      <router-link class="button" to="/" v-if="is_expanded">
+        <!-- <span class="material-icons">home</span> -->
+        <i class="pi pi-home material-icons"></i>
+        <span class="text">Home</span>
+      </router-link>
+
+      <el-tooltip
+        class="box-item"
+        effect="dark"
+        content="Home"
+        placement="right-start"
+        v-if="!is_expanded"
+      >
+        <router-link class="button" to="/" v-if="!is_expanded || is_expanded">
           <i class="pi pi-home material-icons"></i>
           <span class="text">Home</span>
         </router-link>
-
-        <el-tooltip
-          class="box-item"
-          effect="dark"
-          content="Home"
-          placement="right-start"
-          v-if="!is_expanded"
-        >
-          <router-link class="button" to="/" v-if="!is_expanded || is_expanded">
-            <i class="pi pi-home material-icons"></i>
-            <span class="text">Home</span>
-          </router-link>
-        </el-tooltip>
-      </div>
+      </el-tooltip>
 
       <!-- Farmacia -->
-      <div v-if="tipoUsuario == 1">
-        <router-link class="button" to="/farmacias" v-if="is_expanded">
-          <span class="material-icons">local_pharmacy</span>
+      <router-link class="button" to="/farmacias" v-if="is_expanded">
+        <span class="material-icons">local_pharmacy</span>
+        <!-- <i class="pi pi-home material-icons"></i> -->
+        <span class="text">Farmacia</span>
+      </router-link>
+
+      <el-tooltip
+        class="box-item"
+        effect="dark"
+        content="Farmacia"
+        placement="right-start"
+        v-if="!is_expanded"
+      >
+        <router-link
+          class="button"
+          to="/farmacias"
+          v-if="!is_expanded || is_expanded"
+        >
           <!-- <i class="pi pi-home material-icons"></i> -->
+          <span class="material-icons">local_pharmacy</span>
+
           <span class="text">Farmacia</span>
         </router-link>
-
-        <el-tooltip
-          class="box-item"
-          effect="dark"
-          content="Farmacia"
-          placement="right-start"
-          v-if="!is_expanded"
-        >
-          <router-link
-            class="button"
-            to="/farmacias"
-            v-if="!is_expanded || is_expanded"
-          >
-            <!-- <i class="pi pi-home material-icons"></i> -->
-            <span class="material-icons">local_pharmacy</span>
-
-            <span class="text">Farmacia</span>
-          </router-link>
-        </el-tooltip>
-      </div>
+      </el-tooltip>
     </div>
 
     <div class="flex"></div>
 
     <!-- Mi cuenta -->
-    <div class="menu" v-if="tipoUsuario == 1">
-      <div>
-        <router-link class="button" to="/mi-cuenta" v-if="is_expanded">
-          <i class="pi pi-user material-icons"></i>
+    <div>
+      <router-link class="button" to="/mi-cuenta" v-if="is_expanded">
+        <i class="pi pi-user material-icons"></i>
 
-          <span class="text">{{ $store.state.user.name }}</span>
-        </router-link>
-
-        <el-tooltip
-          class="box-item"
-          effect="dark"
-          content="Mi cuenta"
-          placement="right-start"
-          v-if="!is_expanded"
-        >
-          <router-link
-            class="button"
-            to="/mi-cuenta"
-            v-if="!is_expanded || is_expanded"
-          >
-            <i class="pi pi-user material-icons"></i>
-
-            <span class="text">{{ $store.state.user.name }}</span>
-          </router-link>
-        </el-tooltip>
-      </div>
-
-      <!-- Logout -->
-      <div class="button logout" v-if="is_expanded">
-        <span @click="logout()">
-          <i class="pi pi-sign-out material-icons"></i>
-        </span>
-
-        <span class="text">Salir</span>
-      </div>
+        <span class="text">{{ $store.state.user.name }}</span>
+      </router-link>
 
       <el-tooltip
         class="box-item"
         effect="dark"
-        content="Salir"
+        content="Mi cuenta"
         placement="right-start"
         v-if="!is_expanded"
       >
-        <div class="button logout" v-if="!is_expanded">
-          <span @click="logout()">
-            <i class="pi pi-sign-out material-icons"></i>
-          </span>
-          <span class="text">Salir</span>
-        </div>
+        <router-link
+          class="button"
+          to="/mi-cuenta"
+          v-if="!is_expanded || is_expanded"
+        >
+          <i class="pi pi-user material-icons"></i>
+
+          <span class="text">{{ $store.state.user.name }}</span>
+        </router-link>
       </el-tooltip>
     </div>
+
+    <!-- Logout -->
+    <div class="button logout" v-if="is_expanded">
+      <span @click="logout()">
+        <i class="pi pi-sign-out material-icons"></i>
+      </span>
+
+      <span class="text">Salir</span>
+    </div>
+
+    <el-tooltip
+      class="box-item"
+      effect="dark"
+      content="Salir"
+      placement="right-start"
+      v-if="!is_expanded"
+    >
+      <div class="button logout" v-if="!is_expanded">
+        <span @click="logout()">
+          <i class="pi pi-sign-out material-icons"></i>
+        </span>
+        <span class="text">Salir</span>
+      </div>
+    </el-tooltip>
   </aside>
 </template>
 
