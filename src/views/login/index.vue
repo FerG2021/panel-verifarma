@@ -10,7 +10,7 @@
       </template>
       <div class="contenedor-login" v-loading="loadingLogin">
         <div class="formulario">
-          <img src="verifarmalogo.png" class="img-login" />
+          <img src="/verifarmalogo.png" class="img-login" />
           <el-card class="card-form">
             <form
               @submit.prevent="handleSubmit(!v$.$invalid)"
